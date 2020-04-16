@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 
 import Card from '../components/Card';
-import colors from '../constants/colors';
 import Input from '../components/Input';
 import NumberContainer from '../components/NumberContainer';
+import MainButton from '../components/MainButton';
+
+import defaultStyles from '../constants/default-styles';
+import colors from '../constants/colors';
+import MainButon from '../components/MainButton';
 
 const StartGameScreen = props => {
     const [enteredValue, setEnteredValue] = useState('');
@@ -44,9 +48,9 @@ const StartGameScreen = props => {
     if(confirmed) {
         confirmedOutput = (
             <Card style={styles.summaryContainer}>
-                <Text>You Selected</Text>
+                <Text style={defaultStyles.title}>You Selected</Text>
                 <NumberContainer>{selectedNumber}</NumberContainer>
-                <Button title="START GAME" onPress={() => props.onStartGame(selectedNumber)} />
+                <MainButon onPress={() => props.onStartGame(selectedNumber)}>START GAME</MainButon>
             </Card>
         );
     }
@@ -54,9 +58,9 @@ const StartGameScreen = props => {
     return (
         <TouchableWithoutFeedback onPress={keyboardDismissHandler}>
             <View style={styles.screen}>
-                <Text style={styles.title}>Start a New Game</Text>
+                <Text style={defaultStyles.title}>Start a New Game</Text>
                 <Card style={styles.inputContainer}>
-                    <Text>Select a Number</Text>
+                    <Text style={defaultStyles.bodyText}>Select a Number</Text>
                     <Input 
                         style={styles.input} 
                         blurOnSubmit 
@@ -86,11 +90,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         alignItems: 'center'
-    },
-    title: {
-        fontSize: 20,
-        marginVertical: 10,
-
     },
     inputContainer: {
         width: 300,
